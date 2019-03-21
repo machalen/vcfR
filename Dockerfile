@@ -6,24 +6,14 @@
 #################################################################
 
 #R image to be the base in order to build our new image
-FROM r-base:3.4.0
+FROM r-base:3.5.1
 
 #Maintainer and author
 MAINTAINER Magdalena Arnal <marnal@imim.es>
 
 #Install Ubuntu extensions in order to run r
-RUN apt-get update && apt-get install -y \
-    r-cran-xml \
-    libssl-dev \
-    libcurl4-openssl-dev \
-    libxml2-dev \
-    build-essential \
-    curl \
-    zlib1g-dev \
-    gfortran \
-    libncurses5-dev
-   
-RUN rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y r-cran-xml libssl-dev libcurl4-openssl-dev libxml2-dev
+
 ENV PATH=pkg-config:$PATH
 
 #Install packages from CRAN and bioconductor:
